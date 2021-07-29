@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-Motions</title>
+    <link rel="icon" href="/images/logo.png" type="images/x-icon">
+
+    <style>
+        .brand {
+            width: 80px;
+            height: 40px;
+            background: rgb(8, 56, 119);
+            position: relative;
+            animation: mymove 10s infinite;
+            animation-delay: 2s;
+        }
+    
+        @keyframes mymove {
+            from {
+                left: 0px;
+            }
+    
+            to {
+                left: 100%;
+            }
+        }
+    
+        .brand:hover {
+            height: 300px;
+            background: coral;
+            cursor: grab;
+            animation: none;
+    
+        }
+    </style>
+</head>
+<body>
+    <div class="brand">
+        e-Motions
+    </div>
+    <div class="start">
+        Home
+    </div>
+</body>
+</html>
