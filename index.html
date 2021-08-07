@@ -19,6 +19,34 @@
 
     <!-- Webpage Title -->
     <title>e-Motions</title>
+	
+    <!--script for email-->
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+     <script type="text/javascript">
+         (function() {
+             // https://dashboard.emailjs.com/admin/integration
+             emailjs.init('user_EZlMjW1hhQiuK8ktu0sAB');
+         })();
+     </script>
+     <script type="text/javascript">
+         window.onload = function() {
+             document.getElementById('contact-form').addEventListener('submit', function(event) {
+                 event.preventDefault();
+                 // generate a five digit number for the contact_number variable
+                 this.contact_number.value = Math.random() * 100000 | 0;
+                 // these IDs from the previous steps
+                 emailjs.sendForm('service_5bccr0k', 'template_917d0bf', this)
+                     .then(function() {
+                         alert('SUCCESS!');
+                         event.target.reset();
+                     }, function(error) {
+                         alert('FAILED...', error);
+                     });
+             });
+             
+         }
+         
+     </script>
     
     <!-- Styles -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -401,22 +429,34 @@
             <div class="row">
                 <div class="col-lg-12">
                     
+                    <!-- Contact -->
+     <div id="contact" class="form-1 bg-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Contact details</h2>
+                    <p class="p-heading">For any type of online project please don't hesitate to get in touch with me. The fastest way is to send me your message using the following email <a class="blue no-line" href="#your-link">webemotions21@gmail.com</a></p>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    
                     <!-- Contact Form -->
-                        <form id="contactForm" action="javascript:sendmail()" method="POST"><input type="hidden" name="_captcha" value="false">
+                        <form id="contact-form" ><input type="hidden" name="contact_number" value="false">
                         <div class="form-group">
-                            <input type="text" class="form-control-input" id="Name" name="Name" required>
+                            <input type="text" class="form-control-input" id="Name" name="from_name" required>
                             <label class="label-control" for="cname">Name</label>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control-input" id="Sender" name="Sender" required>
+                            <input type="email" class="form-control-input" id="Sender" name="user_email" required>
                             <label class="label-control" for="cemail">Email</label>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control-textarea" id="Message" name="Message" required></textarea>
+                            <textarea class="form-control-textarea" id="Message" name="message" required></textarea>
                             <label class="label-control" for="cmessage">Project details</label>
                         </div>
                         <div class="form-group">
-                            <button type="submit" value="thankYou.html" class="form-control-submit-button">Submit</button>
+                            <button type="submit" value="index.html" class="form-control-submit-button">Submit</button>
                         </div>
                     </form>
                     <!-- end of contact form -->
@@ -426,7 +466,6 @@
         </div> <!-- end of container -->
     </div> <!-- end of form-1 -->  
     <!-- end of contact -->
-
    
    <!-- Copyright -->
     <div class="footer copyright bg-gray">
@@ -469,7 +508,7 @@
                 </div> <!-- end of col -->
             </div> <!-- enf of row -->
         </div> <!-- end of container -->
-		    </div><!--endof copyright -->
+		    </div><!--end of copyright -->
 
       
     	
@@ -479,50 +518,5 @@
     <script src="js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
     <script src="js/scripts.js"></script> <!-- Custom scripts -->
 		    
-  <script
-src="https://code.jquery.com/jquery-2.2.4.min.js"
-integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-crossorigin="anonymous"></script>
-<script src="https://smtpjs.com/v3/smtp.js"></script>
-  <script>  
-
-   function sendmail(){
-  
-          var name = $('#Name').val();
-          var email = $('#Sender').val();
-          var message = $('#Message').val();
-
-          // var body = $('#body').val();
-
-          var Body='Name: '+name+'<br>Email: '+email+'<br>Message: '+message;
-          //console.log(name, phone, email, message);
-
-          Email.send({
-      SecureToken:"fbf31702-bb7f-4a4e-9c1c-4ccf17ee777f",
-              To: 'webemotions21@gmail.com',
-              From: "demooptimalweb@gmail.com",
-              Subject: "New message on contact from "+name,
-              Body: Body
-          }).then(
-              message =>{
-                  //console.log (message);
-                  if(message=='OK'){
-                  alert('Your mail has been send. Thank you for connecting.');
-                  }
-                  else{
-                      console.error (message);
-                      alert('There is error at sending message. ')
-                      
-                  }
-
-              }
-          );
-
-
-
-      }
-
-
-  </script>
 </body>
 </html>
